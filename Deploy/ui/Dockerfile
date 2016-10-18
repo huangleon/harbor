@@ -2,6 +2,7 @@ FROM golang:1.6.2
 
 MAINTAINER jiangd@vmware.com
 
+ENV http_proxy="http://16.216.235.20:8080" https_proxy="http://16.216.235.20:8080"
 RUN apt-get update \
     && apt-get install -y libldap2-dev \
     && rm -r /var/lib/apt/lists/*
@@ -26,6 +27,9 @@ RUN chmod u+x /go/bin/harbor_ui \
     && /tmp/jsminify.sh /go/bin/views/sections/script-include.htm /go/bin/static/resources/js/harbor.app.min.js
 
 WORKDIR /go/bin/
+
+ENV http_proxy="" https_proxy=""
+
 ENTRYPOINT ["/go/bin/harbor_ui"]
 
 EXPOSE 80
