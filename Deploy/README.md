@@ -1,4 +1,5 @@
-For HPE-cloud kubernetes deployment:
+###For HPE-cloud kubernetes deployment:
+
 Following the instructions:
 
 [Deploy Harbor on Kubernetes](../docs/kubernetes_deployment.md)
@@ -30,3 +31,17 @@ And follow the changes below:
   # create and bind the pod to the service
   kubectl create -f kubernetes/mysql-rc.yaml -f kubernetes/proxy-rc.yaml -f kubernetes/registry-rc.yaml -f kubernetes/ui-rc.yaml
   ```
+
+###The USE of Harbor
+
+If the the registry is `c9t24960.itcs.hpecorp.net:31366`, the user `test` create a project named `prj-1` and try to push an image `nginx` with tag `1.7.2`, the push command as below:
+```
+docker login c9t24960.itcs.hpecorp.net:31366
+username:test
+password:
+
+......
+docker push c9t24960.itcs.hpecorp.net:31366/prj-1/nginx:1.7.2
+```
+[Failed to push image](https://github.com/vmware/harbor/issues/80)
+>Currently harbor does not have a personal namespace. Every namespace has to be a project.
