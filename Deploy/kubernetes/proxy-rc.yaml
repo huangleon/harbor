@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: proxy
-        image: caicloud/harbor_proxy:latest
+#        image: caicloud/harbor_proxy:latest
+        image: hleon256/proxy:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80

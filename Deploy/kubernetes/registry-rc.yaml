@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: registry
-        image: caicloud/harbor_registry:2.3.0
+#        image: caicloud/harbor_registry:2.3.0
+        image: hleon256/registry:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
@@ -23,6 +24,9 @@ spec:
         volumeMounts:
         - name: storage
           mountPath: /storage
+        env:
+        - name: GODEBUG
+          value: netdns=cgo
       volumes:
       - name: storage
         emptyDir: {}

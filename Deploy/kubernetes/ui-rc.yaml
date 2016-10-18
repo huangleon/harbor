@@ -15,27 +15,29 @@ spec:
     spec:
       containers:
       - name: ui
-        image: caicloud/harbor_deploy_ui:latest
+        image: hleon256/deploy_ui:latest
         imagePullPolicy: Always
         env:
           - name: MYSQL_HOST
-            value: mysql
+            value: $(MYSQL_SERVICE_HOST)
           - name: MYSQL_PORT
-            value: "3306"
+            value: $(MYSQL_SERVICE_PORT)
           - name: MYSQL_USR
             value: root
           - name: MYSQL_PWD
             value: root123
           - name: REGISTRY_URL
-            value: http://registry:5000
+            value: http://$(REGISTRY_SERVICE_HOST):$(REGISTRY_SERVICE_PORT)
+          - name: UI_URL
+            value: http://$(UI_SERVICE_HOST)
           - name: CONFIG_PATH
             value: /etc/ui/app.conf
           - name: HARBOR_REG_URL
-            value: localhost
+            value: http://c9t24960.itcs.hpecorp.net:31366
           - name: HARBOR_ADMIN_PASSWORD
             value: Harbor12345
           - name: HARBOR_URL
-            value: http://localhost
+            value: http://c9t24960.itcs.hpecorp.net:31366
           - name: AUTH_MODE
             value: db_auth
           - name: LDAP_URL
@@ -44,6 +46,24 @@ spec:
             value: uid=%s,ou=people,dc=mydomain,dc=com
           - name: LOG_LEVEL
             value: debug
+          - name: UI_SECRET
+            value: "yKDEY9X45Cif7O0s"
+          - name: SECRET_KEY
+            value: "secretkey1234567"
+          - name: SELF_REGISTRATION
+            value: "on"
+          - name: USE_COMPRESSED_JS
+            value: "on"
+          - name: GODEBUG
+            value: netdns=cgo
+          - name: EXT_ENDPOINT
+            value: http://c9t24960.itcs.hpecorp.net:31366
+          - name: TOKEN_URL
+            value: http://$(UI_SERVICE_HOST)
+          - name: TOKEN_EXPIRATION
+            value: "30"
+          - name: VERIFY_REMOTE_CERT
+            value: "on"
         ports:
         - containerPort: 80
 
