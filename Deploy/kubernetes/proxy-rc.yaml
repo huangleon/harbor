@@ -18,6 +18,21 @@ spec:
 #        image: caicloud/harbor_proxy:latest
         image: hleon256/proxy:latest
         imagePullPolicy: Always
+        command: ["/bin/sh", "-c"]
+        args: ["MYVARS='$REGISTRY_SERVICE_HOST:$REGISTRY_SERVICE_PORT:$UI_SERVICE_HOST:$UI_SERVICE_PORT';envsubst \"$MYVARS\" < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf;envsubst \"$MYVARS\" < /etc/nginx/nginx.https.conf.template > /etc/nginx/nginx.https.conf;nginx -g 'daemon off;'"]
         ports:
         - containerPort: 80
         - containerPort: 443
+#        volumeMounts:
+#        - mountPath: /etc/nginx/
+#          name: config
+#      volumes:
+#        - name: config
+#          configMap:
+#            name: proxy-config
+#            items:
+#            - key: nginx.conf
+#              path: nginx.conf.template
+#            - key: nginx.https.conf
+#              path: nginx.https.conf.template
+
