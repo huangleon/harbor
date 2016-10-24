@@ -27,6 +27,10 @@ spec:
         env:
         - name: GODEBUG
           value: netdns=cgo
+        - name: TOKEN_URL
+          value: http://c9t24960.itcs.hpecorp.net:31366
+        command: ["/bin/sh", "-c"]
+        args: ["MYVARS='$TOKEN_URL';envsubst\"$MYVARS\" < /etc/registry/config.yml.template > /tec/registry/config.yml;/bin/registry /etc/registry/config.yml"]
       volumes:
       - name: storage
         emptyDir: {}

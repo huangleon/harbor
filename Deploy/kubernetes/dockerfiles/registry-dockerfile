@@ -1,6 +1,6 @@
 FROM library/registry:2.5.0
 
 ADD ./config/registry/ /etc/registry/
-ADD ./kubernetes/dockerfiles/registry-config.yml /etc/registry/config.yml 
+ADD ./kubernetes/dockerfiles/registry-config.yml.template /etc/registry/config.yml.template 
 
 CMD ["/etc/registry/config.yml"]
