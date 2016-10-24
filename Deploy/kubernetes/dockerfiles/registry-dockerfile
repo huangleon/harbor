@@ -1,7 +1,8 @@
 FROM library/registry:2.5.0
 
-ADD ./config/registry/ /etc/registry/
-ADD ./kubernetes/dockerfiles/registry-config.yml.template /etc/registry/config.yml.template 
+#ADD ./config/registry/ /etc/registry/
+#ADD ./kubernetes/dockerfiles/registry-config.yml.template /etc/registry/config.yml.template 
+ADD ./kubernetes/dockerfiles/registry/ /etc/registry/
 
 ENV http_proxy="http://16.216.235.20:8080" https_proxy="http://16.216.235.20:8080"
 RUN apk update \

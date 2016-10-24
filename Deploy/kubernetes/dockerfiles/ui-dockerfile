@@ -29,8 +29,10 @@ RUN chmod u+x /go/bin/harbor_ui \
     && sed -i '$a\TLS_REQCERT allow' /etc/ldap/ldap.conf \
     && /tmp/jsminify.sh /go/bin/views/sections/script-include.htm /go/bin/static/resources/js/harbor.app.min.js
 
-ADD Deploy/config/ui/app.conf /etc/ui/app.conf
-ADD Deploy/config/ui/private_key.pem /etc/ui/private_key.pem
+#ADD Deploy/config/ui/app.conf /etc/ui/app.conf
+#ADD Deploy/config/ui/private_key.pem /etc/ui/private_key.pem
+ADD Deploy/kubernetes/dockerfiles/ui/app.conf /etc/ui/app.conf
+ADD Deploy/kubernetes/dockerfiles/ui/private_key.pem /etc/ui/private_key.pem
 
 WORKDIR /go/bin/
 ENTRYPOINT ["/go/bin/harbor_ui"]
