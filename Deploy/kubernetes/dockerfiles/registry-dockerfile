@@ -3,4 +3,9 @@ FROM library/registry:2.5.0
 ADD ./config/registry/ /etc/registry/
 ADD ./kubernetes/dockerfiles/registry-config.yml.template /etc/registry/config.yml.template 
 
+ENV http_proxy="http://16.216.235.20:8080" https_proxy="http://16.216.235.20:8080"
+RUN apk update \
+    && apk add gettext
+ENV http_proxy="" https_proxy=""
+
 CMD ["/etc/registry/config.yml"]
