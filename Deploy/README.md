@@ -4,6 +4,11 @@ Following the instructions:
 
 [Deploy Harbor on Kubernetes](../docs/kubernetes_deployment.md)
 
+For building ui part, use different command, since building uses different image file and dockerfile scripts.
+```
+sudo docker build -f kubernetes/dockerfiles/ui-dockerfile -t {your_account}/deploy_ui:latest ..
+```
+
 And follow the changes below:
 
 1. Change hostname in harbor.cfg as harbor.cfg.hpecloud shows.
